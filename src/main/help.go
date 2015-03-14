@@ -43,15 +43,15 @@ func runHelp(cmd *Command, args []string) {
 		}
 	}
 
-	fmt.Fprintf(os.Stderr, "Unknown help topic: %q. Run 'acldt helpp'. \n", args[0])
+	fmt.Fprintf(os.Stderr, "Unknown help topic: %q. Run 'gh help'. \n", args[0])
 	os.Exit(2)
 }
 
 var usageTplText = `Usage: gh [command] [options] [arguments]
 
-Supported command are:
-{{range .Commands}}{{if .Runnnable}}{{if .ShowUsage}}
-{{.Name | printf "%-8s"}} {{.Short}}{{end}}{{end}}{{end}}
+Commands:
+{{range .Commands}}{{if .Runnnable}}{{if .List}}
+    {{.Name | printf "%-16s"}}  {{.Short}}{{end}}{{end}}{{end}}
 
 See 'gh help [command]' for more information about a command.
 `
